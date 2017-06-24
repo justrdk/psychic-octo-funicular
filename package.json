@@ -22,6 +22,7 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "co": "^4.6.0",
+    "kcors": "^2.2.1",
     "koa": "^2.3.0",
     "koa-router": "^7.2.1",
     "lodash": "^4.17.4",

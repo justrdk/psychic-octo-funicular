@@ -36,8 +36,8 @@ const removeOrdersByOrderId = Promise.coroutine(function* getOrdersByCompany(ord
   let db
   try {
     db = yield mongoService.connectMongoDb()
-    const orders = yield companyHelper.removeOrdersByOrderId(db, orderId)
-    return Promise.resolve(orders)
+    const deleted = yield companyHelper.removeOrdersByOrderId(db, orderId)
+    return Promise.resolve(deleted)
   } catch (err) {
     return Promise.reject(err)
   } finally {
