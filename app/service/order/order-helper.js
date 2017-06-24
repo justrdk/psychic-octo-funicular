@@ -39,6 +39,10 @@ const getOrdersCount = db => new Promise((resolve, reject) => {
           '$sum': 1
         }
       }
+    }, {
+      $sort: {
+        count: -1
+      }
     }
   ]).toArray((err, orders) => {
     if (err) {
