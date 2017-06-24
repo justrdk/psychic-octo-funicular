@@ -1,0 +1,25 @@
+{
+  "name": "psychic-octo-funicular",
+  "version": "1.0.0",
+  "description": "nodejesstuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justrdk/psychic-octo-funicular.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "osman hernadnez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/justrdk/psychic-octo-funicular/issues"
+  },
+  "homepage": "https://github.com/justrdk/psychic-octo-funicular#readme",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
