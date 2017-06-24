@@ -6,14 +6,14 @@ const co = require('co');
 const orderService = require('./app/service/order/order')
 
 
-router.get('/orders/:company', co.wrap(function *(ctx, next) {
+router.get('/ordersByCompany/:company', co.wrap(function *(ctx, next) {
   const { company } = ctx.params
   const orders = yield orderService.getOrdersByCompany(company)
   ctx.body = orders
   yield next()
 }))
 
-router.get('/orders/:address', co.wrap(function *(ctx, next) {
+router.get('/ordersByAddress/:address', co.wrap(function *(ctx, next) {
   const { address } = ctx.params
   const orders = yield orderService.getOrdersByAddress(address)
   ctx.body = orders
@@ -23,6 +23,12 @@ router.get('/orders/:address', co.wrap(function *(ctx, next) {
 router.delete('/orders/:orderId', co.wrap(function *(ctx, next) {
   const { orderId } = ctx.params
   const orders = yield orderService.removeOrdersByOrderId(orderId)
+  ctx.body = orders
+  yield next()
+}))
+
+router.get('/ordersCount', co.wrap(function *(ctx, next) {
+  const orders = yield orderService.getOrdersCount()
   ctx.body = orders
   yield next()
 }))

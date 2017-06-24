@@ -21,7 +21,7 @@ const getOrdersByAddress = Promise.coroutine(function* getOrdersByCompany(addres
   let db
   try {
     db = yield mongoService.connectMongoDb()
-    const orders = yield companyHelper.getOrdersByCompany(db, address)
+    const orders = yield companyHelper.getOrdersByAddress(db, address)
     return Promise.resolve(orders)
   } catch (err) {
     return Promise.reject(err)
@@ -36,7 +36,22 @@ const removeOrdersByOrderId = Promise.coroutine(function* getOrdersByCompany(ord
   let db
   try {
     db = yield mongoService.connectMongoDb()
-    const orders = yield companyHelper.getOrdersByCompany(db, orderId)
+    const orders = yield companyHelper.removeOrdersByOrderId(db, orderId)
+    return Promise.resolve(orders)
+  } catch (err) {
+    return Promise.reject(err)
+  } finally {
+    if (db) {
+      db.close()
+    }
+  }
+});
+
+const getOrdersCount = Promise.coroutine(function* getOrdersCount() {
+  let db
+  try {
+    db = yield mongoService.connectMongoDb()
+    const orders = yield companyHelper.getOrdersCount(db)
     return Promise.resolve(orders)
   } catch (err) {
     return Promise.reject(err)
@@ -48,5 +63,8 @@ const removeOrdersByOrderId = Promise.coroutine(function* getOrdersByCompany(ord
 });
 
 module.exports = {
-  getOrdersByCompany
+  getOrdersByCompany,
+  getOrdersByAddress,
+  removeOrdersByOrderId,
+  getOrdersCount
 }
