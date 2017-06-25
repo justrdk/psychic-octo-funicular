@@ -20,12 +20,14 @@ const getOrdersByAddress = (db, customerAddress) => new Promise((resolve, reject
 })
 
 const removeOrderById = (db, orderId) => new Promise((resolve, reject) => {
-  db.collection(orderCollection).remove({orderId}).toArray((err, orders) => {
+  db.collection(orderCollection).remove({
+    orderId
+  }, ((err, orders) => {
     if (err) {
       return reject(err)
     }
     return resolve(true)
-  })
+  }))
 })
 
 const getOrdersCount = db => new Promise((resolve, reject) => {

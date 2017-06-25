@@ -1,12 +1,12 @@
 const Promise = require('bluebird')
 const mongoService = require('../common/connect-mongo')
-const companyHelper = require('./order-helper')
+const orderHelper = require('./order-helper')
 
 const getOrdersByCompany = Promise.coroutine(function* getOrdersByCompany(company) {
   let db
   try {
     db = yield mongoService.connectMongoDb()
-    const orders = yield companyHelper.getOrdersByCompany(db, company)
+    const orders = yield orderHelper.getOrdersByCompany(db, company)
     return Promise.resolve(orders)
   } catch (err) {
     return Promise.reject(err)
@@ -21,7 +21,7 @@ const getOrdersByAddress = Promise.coroutine(function* getOrdersByCompany(addres
   let db
   try {
     db = yield mongoService.connectMongoDb()
-    const orders = yield companyHelper.getOrdersByAddress(db, address)
+    const orders = yield orderHelper.getOrdersByAddress(db, address)
     return Promise.resolve(orders)
   } catch (err) {
     return Promise.reject(err)
@@ -36,7 +36,7 @@ const removeOrdersByOrderId = Promise.coroutine(function* getOrdersByCompany(ord
   let db
   try {
     db = yield mongoService.connectMongoDb()
-    const deleted = yield companyHelper.removeOrdersByOrderId(db, orderId)
+    const deleted = yield orderHelper.removeOrderById(db, orderId)
     return Promise.resolve(deleted)
   } catch (err) {
     return Promise.reject(err)
@@ -51,7 +51,7 @@ const getOrdersCount = Promise.coroutine(function* getOrdersCount() {
   let db
   try {
     db = yield mongoService.connectMongoDb()
-    const orders = yield companyHelper.getOrdersCount(db)
+    const orders = yield orderHelper.getOrdersCount(db)
     return Promise.resolve(orders)
   } catch (err) {
     return Promise.reject(err)
